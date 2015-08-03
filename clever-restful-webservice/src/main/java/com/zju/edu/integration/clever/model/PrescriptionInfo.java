@@ -4,7 +4,7 @@ public class PrescriptionInfo {
 	public String presciptionID;//处方ID(*)
 	public String patientID;//病人ID(*)
 	public String visitID;//就诊ID(*)
-	public int orderID;//医嘱ID
+	public String orderID;//医嘱ID
 	public String mandatorName;//委托人姓名
 	public String mandatorIDCard;//委托人证件号
 	public String drugType;//药物类别,非空，0-西药，1-中成药，2-中药饮片，3-中药配方(*)

@@ -6,8 +6,9 @@ public class ExamReqInfo {
 	public String examReqID;//检查申请号(*)
 	public String patientID;//病人号(*)
 	public String visitID;//就诊号(*)
-	public int orderNO;//医嘱序号
-	public String urgency;//优先级0-普通 1-紧急
+	public String orderNO;//医嘱序号
+	public String urgencyCode;//优先级0-普通 1-紧急
+	public String urgencyName;//优先级
 	public Date reqDate;//申请日期时间
 	public String reqHospitalName;//申请机构名称
 	public String reqHospitalID;//申请机构代码
@@ -25,6 +26,8 @@ public class ExamReqInfo {
 	public String receiverDeptID;//检查科室代码
 	public String receiverDoctorName;//检查医师姓名
 	public String receiverDoctorID;//检查医师代码
-	
+	public String receiverOrganizationName;//检查组织
+	public String receiverOrganizationCode;//检查组织代码
+	public Date latestDateServiceReq;//最迟的日期是可以接受的服务完成
 
 }

@@ -20,7 +20,7 @@
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
-			<value>classpath:config/jdbc.properties</value>
+			<value>classpath:com/zju/edu/integration/clever/config/jdbc.properties</value>
 		</property>
 	</bean>
 	<!--配置数据源 -->
@@ -34,14 +34,14 @@
 
 	<!-- mybatis文件配置，扫描所有mapper文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:configLocation="classpath:config/mybatis-config.xml"
-		p:mapperLocations="classpath:mapper/*.xml" />
+		p:dataSource-ref="dataSource" p:configLocation="classpath:com/zju/edu/integration/clever/config/mybatis-config.xml"
+		p:mapperLocations="classpath:com/zju/edu/integration/clever/mapper/*.xml" />
 
 	<!-- configLocation为mybatis属性 mapperLocations为所有mapper -->
 
 	<!-- spring与mybatis整合配置，扫描所有dao -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-		p:basePackage="com.test.ssm.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+		p:basePackage="com.zju.edu.integration.clever.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
 
 	<!-- 对数据源进行事务管理 -->
 	<bean id="transactionManager"

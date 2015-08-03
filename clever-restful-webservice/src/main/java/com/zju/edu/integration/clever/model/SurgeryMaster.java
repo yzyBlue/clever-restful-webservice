@@ -32,8 +32,11 @@ public class SurgeryMaster {
 	public String inspectionNurseOneName;//巡台护士1
 	public String inspectionNurseTwoCode;//巡台护士2代码
 	public String inspectionNurseTwoName;//巡台护士2
+	public String operatingRoomNOCode;//手术间代码
 	public String operatingRoomNO;//手术间
+	public String operatingRoomCode;//手术室代码
 	public String operatingRoom;//手术室
+	public String operationTableCode;//手术台代码
 	public String operationTable;//手术台
 	public int sequence;//台次
 	public String operationLevelCode;//手术级别代码
