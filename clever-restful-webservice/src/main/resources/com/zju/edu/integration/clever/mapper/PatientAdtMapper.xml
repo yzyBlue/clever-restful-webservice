@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zju.edu.integration.clever.dao.PatientAdtDao">
+	<resultMap id="PatientInfoMap"
+		type="com.zju.edu.integration.clever.model.PatientInfo">
+		<id column="UID" property="uid" jdbcType="NUMERIC" />
+		<result column="PatientIdentifier_Identifier" property="patientID" jdbcType="VARCHAR" />
+		<result column="Name_Name_FullName" property="patientName" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_Gender" property="patientSex" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_BirthData_BirthDate" property="dateOfBirth" jdbcType="TIMESTAMP" />
+		<result column="DemographicDetails_Nationality" property="nationality" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_EthnicBackground" property="ethnic" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_MaritalStatus" property="maritalStatus" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_Profession" property="profession" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_EducationBackground" property="educationBackground" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_ABOBloodType" property="bloodTypeABO" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_RHBloodType" property="bloodTypeRH" jdbcType="VARCHAR" />
+		<result column="IdNumber_Identifier" property="patientIdNO" jdbcType="VARCHAR" />
+		<result column="HealthcareIdentifier_Identifier" property="healthNO" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_BirthData_BirthAddressDescription" property="birthPlace" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_BirthData_CountryOfBirth" property="birthPlaceCountry" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_BirthData_StateTerritoryProvince" property="birthPlaceProvince" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_BirthData_CityTownLocality" property="birthPlaceCity" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_DeathData_DeathDate" property="dateOfDeath" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_DeathData_Country" property="deathCountry" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_DeathData_StateTerritoryProvince" property="deathProvince" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_DeathData_CityTownLocality" property="deathCity" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="PatientAdmissionMap"
+		type="com.zju.edu.integration.clever.model.PatientAdmission">
+		<id column="uid" property="uid" jdbcType="NUMERIC" />
+		<result column="PatientIdentifier" property="patientID" jdbcType="VARCHAR" />
+		<result column="PatientClass" property="patientClass" jdbcType="VARCHAR" />
+		<result column="EncounterIdentifier" property="visitID" jdbcType="VARCHAR" />
+		<result column="AssignedPatientLocation_LocationDescription_Code" property="deptCode" jdbcType="TIMESTAMP" />
+		<result column="AssignedPatientLocation_LocationDescription_Name" property="deptName" jdbcType="VARCHAR" />
+		<result column="AssignedPatientLocation_Ward_Code" property="wardCode" jdbcType="VARCHAR" />
+		<result column="AssignedPatientLocation_Ward_Name" property="wardName" jdbcType="VARCHAR" />
+		<result column="AssignedPatientLocation_Room_Code" property="roomCode" jdbcType="VARCHAR" />
+		<result column="AssignedPatientLocation_Room_Name" property="roomName" jdbcType="VARCHAR" />
+		<result column="AssignedPatientLocation_Bed_Code" property="bedCode" jdbcType="VARCHAR" />
+		<result column="AssignedPatientLocation_Bed_Name" property="bedName" jdbcType="VARCHAR" />
+		<result column="AdmitDateTime" property="admitDateTime" jdbcType="TIMESTAMP" />
+		<result column="AdmittingIntent" property="admitIntent" jdbcType="VARCHAR" />
+		<result column="AdmittingDoctor_id" property="admitDoctorID" jdbcType="VARCHAR" />
+		<result column="AdmittingDoctor_name" property="admitDoctorName" jdbcType="VARCHAR" />
+		<result column="ResidentDoctor_id" property="residentDoctorID" jdbcType="VARCHAR" />
+		<result column="ResidentDoctor_name" property="residentDoctorName" jdbcType="VARCHAR" />
+		<result column="Attending_doctor_id" property="attendingDoctorID" jdbcType="VARCHAR" />
+		<result column="Attending_doctor_name" property="attendingDoctorName" jdbcType="VARCHAR" />
+		<result column="Director_id" property="direcotrID" jdbcType="VARCHAR" />
+		<result column="Director_name" property="direcotrName" jdbcType="VARCHAR" />
+		<result column="DeputyDoctor_id" property="deputyDoctorID" jdbcType="VARCHAR" />
+		<result column="DeputyDoctor_name" property="deputyDoctorName" jdbcType="VARCHAR" />
+		<result column="AdmitSource" property="deathProvince" jdbcType="VARCHAR" />
+		<result column="PatientCondition" property="patientCondition" jdbcType="VARCHAR" />
+		<result column="AdmissionType" property="admissionType" jdbcType="VARCHAR" />
+		<result column="FinancialClass" property="financialClass" jdbcType="VARCHAR" />
+		<result column="NursingClass" property="nursingClass" jdbcType="VARCHAR" />
+		<result column="DoctorGrooupId" property="doctorGroupID" jdbcType="VARCHAR" />
+		<result column="NursingGroupId" property="nursingGroupID" jdbcType="VARCHAR" />
+		<result column="FirstAdmissionIndicator" property="firstAdmissionIndicator" jdbcType="VARCHAR" />
+		<result column="SpecialDepartment" property="specialDepartment" jdbcType="VARCHAR" />
+		<result column="Insurance_InsuranceIdentifier" property="insuranceID" jdbcType="VARCHAR" />
+		<result column="Insurance_Type" property="insuranceType" jdbcType="VARCHAR" />
+		<result column="Insurance_TypeCode" property="insuranceTypeCode" jdbcType="VARCHAR" />
+		<result column="Insurance_Property" property="insurancePropety" jdbcType="VARCHAR" />
+		<result column="Insurance_PropertyCode" property="insurancePropetyCode" jdbcType="VARCHAR" />
+		<result column="EmailAddress_IdentificationOfTheMedium" property="emailAdress" jdbcType="VARCHAR" />
+		<result column="MailingAddress_AddressDescription" property="mailingAdress" jdbcType="VARCHAR" />
+		<result column="MailingAddress_StateProvinceTerritory" property="maillingAdressProvince" jdbcType="VARCHAR" />
+		<result column="MailingAddress_CityUrban" property="maillingAdressCity" jdbcType="VARCHAR" />
+		<result column="MailingAddress_District" property="maillingAdressDistrict" jdbcType="VARCHAR" />
+		<result column="MailingAddress_SuburbTownLocality" property="maillingAdressTownLocality" jdbcType="VARCHAR" />
+		<result column="MailingAddress_StreetName" property="maillingAdressStreetName" jdbcType="VARCHAR" />
+		<result column="MailingAddress_Number" property="maillingAdressNumber" jdbcType="VARCHAR" />
+		<result column="MailingAddress_PostalCode" property="maillingAdressPostalCode" jdbcType="VARCHAR" />
+		<result column="MobelPhone_IdentificationOfTheMedium" property="mobelPhone" jdbcType="VARCHAR" />
+		<result column="HomePhone_IdentificationOfTheMedium" property="homePhone" jdbcType="VARCHAR" />
+		<result column="BusinessPhone_IdentificationOfTheMedium" property="businessPhone" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="patientInfoFields">
+		PatientIdentifier_Identifier,Name_Name_FullName,DemographicDetails_Gender,DemographicDetails_BirthData_BirthDate,
+		DemographicDetails_Nationality,DemographicDetails_EthnicBackground,DemographicDetails_MaritalStatus,
+		DemographicDetails_Profession,DemographicDetails_EducationBackground,DemographicDetails_ABOBloodType,
+		DemographicDetails_RHBloodType,IdNumber_Identifier,HealthcareIdentifier_Identifier,
+		DemographicDetails_BirthData_BirthAddressDescription,DemographicDetails_BirthData_CountryOfBirth,
+		DemographicDetails_BirthData_StateTerritoryProvince,DemographicDetails_BirthData_CityTownLocality,
+		DemographicDetails_ DeathData_DeathDate,DemographicDetails_ DeathData_Country,
+		DemographicDetails_DeathData_StateTerritoryProvince,DemographicDetails_ DeathData_CityTownLocality
+	</sql>
+		
+	<sql id="patientAdmissionFields">
+		PatientIdentifier,PatientClass,EncounterIdentifier,AssignedPatientLocation_LocationDescription_Code,AssignedPatientLocation_LocationDescription_Name,
+		AssignedPatientLocation_Ward_Code,AssignedPatientLocation_Ward_Name,AssignedPatientLocation_Room_Code,AssignedPatientLocation_Room_Name,
+		AssignedPatientLocation_Bed_Code,AssignedPatientLocation_Bed_Name,AdmitDateTime,AdmittingIntent,AdmittingDoctor_id,
+		AdmittingDoctor_name,ResidentDoctor_id,ResidentDoctor_name,Attending_doctor_id,Attending_doctor_name,Director_id,
+		Director_name,DeputyDoctor_id,DeputyDoctor_name,AdmitSource,PatientCondition,AdmissionType,FinancialClass,NursingClass
+		DoctorGrooupId,NursingGroupId,FirstAdmissionIndicator,SpecialDepartment,Insurance_InsuranceIdentifier,Insurance_Type,
+		Insurance_TypeCode,Insurance_Property,Insurance_PropertyCode,EmailAddress_IdentificationOfTheMedium,MailingAddress_AddressDescription,
+		MailingAddress_StateProvinceTerritory,MailingAddress_CityUrban,MailingAddress_District,MailingAddress_SuburbTownLocality,
+		MailingAddress_StreetName,MailingAddress_Number,MailingAddress_PostalCode,MobelPhone_IdentificationOfTheMedium,HomePhone_IdentificationOfTheMedium,
+		BusinessPhone_ IdentificationOfTheMedium
+	</sql>
+	
+	<insert id="insertPatientInfo" parameterType="com.zju.edu.integration.clever.model.PatientInfo">
+		<selectKey resultType="long" keyProperty="uid" order="AFTER">
+			SELECT
+			ident_current('Demo_Patient') as uid
+		</selectKey>
+		insert into Demo_Patient(
+			<include refid="patientInfoFields" />
+		)
+		values(#{patientID,jdbcType=VARCHAR},#{patientName,jdbcType=VARCHAR},#{patientSex,jdbcType=VARCHAR},#{dateOfBirth,jdbcType=TIMESTAMP},
+		#{nationality,jdbcType=VARCHAR},#{ethnic,jdbcType=VARCHAR},#{maritalStatus,jdbcType=VARCHAR},#{profession,jdbcType=VARCHAR},#{educationBackground,jdbcType=VARCHAR},
+		#{bloodTypeABO,jdbcType=VARCHAR},#{bloodTypeRH,jdbcType=VARCHAR},#{patientIdNO,jdbcType=VARCHAR},#{healthNO,jdbcType=VARCHAR},#{birthPlace},#{birthPlaceCountry,jdbcType=VARCHAR},
+		#{birthPlaceProvince,jdbcType=VARCHAR},#{birthPlaceCity,jdbcType=VARCHAR},#{dateOfDeath,jdbcType=VARCHAR},#{deathCountry,jdbcType=VARCHAR},#{deathProvince,jdbcType=VARCHAR},#{deathCity,jdbcType=VARCHAR});
+	</insert>
+	<insert id="insertPatientAdmissionInfo" parameterType="com.zju.edu.integration.clever.model.PatientAdmission">
+		<selectKey resultType="long" keyProperty="uid" order="AFTER">
+			SELECT
+			ident_current('Admin_PatientAdmission') as uid
+		</selectKey>
+		insert into Admin_PatientAdmission(
+			<include refid="patientAdmissionFields"/>
+		)
+		values(#{patientID,jdbcType=VARCHAR},#{patientClass,jdbcType=VARCHAR},#{visitID,jdbcType=VARCHAR},#{deptCode,jdbcType=VARCHAR},
+		#{deptName,jdbcType=VARCHAR},#{wardCode,jdbcType=VARCHAR},#{wardName,jdbcType=VARCHAR},
+		#{roomCode,jdbcType=VARCHAR},#{roomName,jdbcType=VARCHAR},#{bedCode,jdbcType=VARCHAR},#{bedName,jdbcType=VARCHAR},
+		#{admitDateTime,jdbcType=TIMESTAMP},#{admitIntent,jdbcType=VARCHAR},#{admitDoctorID,jdbcType=VARCHAR},#{admitDoctorName,jdbcType=VARCHAR},
+		#{residentDoctorID,jdbcType=VARCHAR},#{residentDoctorName,jdbcType=VARCHAR},#{attendingDoctorID,jdbcType=VARCHAR},
+		#{attendingDoctorName,jdbcType=VARCHAR},#{direcotrID,jdbcType=VARCHAR},#{direcotrName,jdbcType=VARCHAR},
+		#{deputyDoctorID,jdbcType=VARCHAR},#{deputyDoctorName,jdbcType=VARCHAR},#{deathProvince,jdbcType=VARCHAR},
+		#{patientCondition,jdbcType=VARCHAR},#{admissionType,jdbcType=VARCHAR},#{financialClass,jdbcType=VARCHAR},#{nursingClass,jdbcType=VARCHAR},
+		#{doctorGroupID,jdbcType=VARCHAR},#{nursingGroupID,jdbcType=VARCHAR},#{firstAdmissionIndicator,jdbcType=VARCHAR},
+		#{specialDepartment,jdbcType=VARCHAR},#{insuranceID,jdbcType=VARCHAR},#{insuranceType,jdbcType=VARCHAR},
+		#{insuranceTypeCode,jdbcType=VARCHAR},#{insurancePropety,jdbcType=VARCHAR},#{insurancePropetyCode,jdbcType=VARCHAR},
+		#{emailAdress,jdbcType=VARCHAR},#{mailingAdress,jdbcType=VARCHAR},#{maillingAdressProvince,jdbcType=VARCHAR},
+		#{maillingAdressCity,jdbcType=VARCHAR},#{maillingAdressDistrict,jdbcType=VARCHAR},#{maillingAdressTownLocality,jdbcType=VARCHAR},
+		#{maillingAdressStreetName,jdbcType=VARCHAR},#{maillingAdressNumber,jdbcType=VARCHAR},
+		#{maillingAdressPostalCode,jdbcType=VARCHAR},#{mobelPhone,jdbcType=VARCHAR},#{homePhone,jdbcType=VARCHAR},#{businessPhone,jdbcType=VARCHAR});
+	</insert>
+</mapper>

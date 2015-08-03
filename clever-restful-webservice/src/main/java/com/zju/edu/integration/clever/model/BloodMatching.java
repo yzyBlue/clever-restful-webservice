@@ -2,6 +2,8 @@ package com.zju.edu.integration.clever.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement(name="BloodMatching")
 public class BloodMatching {
 	public String patientID;//病人号(*)
 	public String visitID;//就诊号(*)

@@ -2,7 +2,10 @@ package com.zju.edu.integration.clever.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement(name="PatientInfo")
 public class PatientInfo {
+	public long uid;
 	public String patientID;//病人号（*）
 	public String patientName;//病人姓名（*）
 	public String patientSex;//病人性别，M：男、F:女、U：未知、O：未说明(*)
