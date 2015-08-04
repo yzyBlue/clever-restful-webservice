@@ -45,8 +45,6 @@ public class PatientAdtController {
 			sqlSession.close();
 		}
 		return integrationResult;
-		
-		
 	}
 	
 

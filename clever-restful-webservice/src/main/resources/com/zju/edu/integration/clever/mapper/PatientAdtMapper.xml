@@ -3,7 +3,7 @@
 <mapper namespace="com.zju.edu.integration.clever.dao.PatientAdtDao">
 	<resultMap id="PatientInfoMap"
 		type="com.zju.edu.integration.clever.model.PatientInfo">
-		<id column="Guid" property="guid" jdbcType="NUMERIC" />
+		<id column="Guid" property="guid" jdbcType="VARCHAR" />
 		<result column="PatientIdentifier_IdentifierMainData_Id" property="patientID" jdbcType="VARCHAR" />
 		<result column="Name_Name_FullName" property="patientName" jdbcType="VARCHAR" />
 		<result column="DemographicDetails_Gender_Code" property="patientSexCode" jdbcType="VARCHAR" />
@@ -52,16 +52,16 @@
 		<result column="AssignedPatientLocation_Bed_Name" property="bedName" jdbcType="VARCHAR" />
 		<result column="AdmitDateTime" property="admitDateTime" jdbcType="TIMESTAMP" />
 		<result column="AdmittingIntent" property="admitIntent" jdbcType="VARCHAR" />
-		<result column="AdmittingDoctor_id" property="admitDoctorID" jdbcType="VARCHAR" />
-		<result column="AdmittingDoctor_name" property="admitDoctorName" jdbcType="VARCHAR" />
-		<result column="ResidentDoctor_id" property="residentDoctorID" jdbcType="VARCHAR" />
-		<result column="ResidentDoctor_name" property="residentDoctorName" jdbcType="VARCHAR" />
-		<result column="Attending_doctor_id" property="attendingDoctorID" jdbcType="VARCHAR" />
-		<result column="Attending_doctor_name" property="attendingDoctorName" jdbcType="VARCHAR" />
-		<result column="Director_id" property="direcotrID" jdbcType="VARCHAR" />
-		<result column="Director_name" property="direcotrName" jdbcType="VARCHAR" />
-		<result column="DeputyDoctor_id" property="deputyDoctorID" jdbcType="VARCHAR" />
-		<result column="DeputyDoctor_name" property="deputyDoctorName" jdbcType="VARCHAR" />
+		<result column="AdmittingDoctor_Id" property="admitDoctorID" jdbcType="VARCHAR" />
+		<result column="AdmittingDoctor_Name" property="admitDoctorName" jdbcType="VARCHAR" />
+		<result column="ResidentDoctor_Id" property="residentDoctorID" jdbcType="VARCHAR" />
+		<result column="ResidentDoctor_Name" property="residentDoctorName" jdbcType="VARCHAR" />
+		<result column="AttendingDoctor_Id" property="attendingDoctorID" jdbcType="VARCHAR" />
+		<result column="AttendingDoctor_Name" property="attendingDoctorName" jdbcType="VARCHAR" />
+		<result column="Director_Id" property="direcotrID" jdbcType="VARCHAR" />
+		<result column="Director_Name" property="direcotrName" jdbcType="VARCHAR" />
+		<result column="DeputyDoctor_Id" property="deputyDoctorID" jdbcType="VARCHAR" />
+		<result column="DeputyDoctor_Name" property="deputyDoctorName" jdbcType="VARCHAR" />
 		<result column="AdmitSource" property="admitSource" jdbcType="VARCHAR" />
 		<result column="PatientCondition" property="patientCondition" jdbcType="VARCHAR" />
 		<result column="AdmissionType_Code" property="admissionTypeCode" jdbcType="VARCHAR" />
@@ -76,10 +76,10 @@
 		<result column="SpecialDepartment_Name" property="specialDepartment" jdbcType="VARCHAR" />
 		<result column="Insurance_InsuranceIdentifier_Id" property="insuranceID" jdbcType="VARCHAR" />
 		<result column="Insurance_InsuranceInformation" property="insuranceInformation" jdbcType="VARCHAR" />
-		<result column="Insurance_Type_Name" property="insuranceType" jdbcType="VARCHAR" />
+		<result column="Insurance_Type" property="insuranceType" jdbcType="VARCHAR" />
 		<result column="Insurance_Type_Code" property="insuranceTypeCode" jdbcType="VARCHAR" />
-		<result column="Insurance_Property" property="insurancePropety" jdbcType="VARCHAR" />
-		<result column="Insurance_PropertyCode" property="insurancePropetyCode" jdbcType="VARCHAR" />
+		<result column="Insurance_PropertyCode_Name" property="insurancePropety" jdbcType="VARCHAR" />
+		<result column="Insurance_PropertyCode_Code" property="insurancePropetyCode" jdbcType="VARCHAR" />
 		<result column="EmailAddress_IdentificationOfTheMedium" property="emailAdress" jdbcType="VARCHAR" />
 		<result column="MailingAddress_AddressDescription" property="mailingAdress" jdbcType="VARCHAR" />
 		<result column="MailingAddress_StateProvinceTerritory" property="maillingAdressProvince" jdbcType="VARCHAR" />
@@ -89,12 +89,13 @@
 		<result column="MailingAddress_StreetName" property="maillingAdressStreetName" jdbcType="VARCHAR" />
 		<result column="MailingAddress_Number" property="maillingAdressNumber" jdbcType="VARCHAR" />
 		<result column="MailingAddress_PostalCode" property="maillingAdressPostalCode" jdbcType="VARCHAR" />
-		<result column="MobelPhone_IdentificationOfTheMedium" property="mobelPhone" jdbcType="VARCHAR" />
+		<result column="MobilePhone_IdentificationOfTheMedium" property="mobelPhone" jdbcType="VARCHAR" />
 		<result column="HomePhone_IdentificationOfTheMedium" property="homePhone" jdbcType="VARCHAR" />
 		<result column="BusinessPhone_IdentificationOfTheMedium" property="businessPhone" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<sql id="patientInfoFields">
+		Guid,
 		PatientIdentifier_IdentifierMainData_Id,
 		Name_Name_FullName,
 		DemographicDetails_Gender_Code,
@@ -116,11 +117,11 @@
 		DemographicDetails_BirthData_CountryOfBirth_Name,
 		DemographicDetails_BirthData_StateTerritoryProvince_Code,
 		DemographicDetails_BirthData_StateTerritoryProvince_Name,
-		DemographicDetails_DeathData_CityTownLocality_Code,
+		DemographicDetails_BirthData_CityTownLocality_Code,
 		DemographicDetails_BirthData_CityTownLocality_Name,
 		DemographicDetails_DeathData_DeathDate,
 		DemographicDetails_DeathData_Country_Code,
-		DemographicDetails_ DeathData_Country_Name,
+		DemographicDetails_DeathData_Country_Name,
 		DemographicDetails_DeathData_StateTerritoryProvince_Code,
 		DemographicDetails_DeathData_StateTerritoryProvince_Name,
 		DemographicDetails_DeathData_CityTownLocality_Code,
@@ -128,6 +129,7 @@
 	</sql>
 		
 	<sql id="patientAdmissionFields">
+		Guid,
 		PatientIdentifier_Id,
 		PatientClass_Code,
 		PatientClass_Name,
@@ -142,16 +144,16 @@
 		AssignedPatientLocation_Bed_Name,
 		AdmitDateTime,
 		AdmittingIntent,
-		AdmittingDoctor_id,
-		AdmittingDoctor_name,
-		ResidentDoctor_id,
-		ResidentDoctor_name,
-		Attending_doctor_id,
-		Attending_doctor_name,
-		Director_id,
-		Director_name,
-		DeputyDoctor_id,
-		DeputyDoctor_name,
+		AdmittingDoctor_Id,
+		AdmittingDoctor_Name,
+		ResidentDoctor_Id,
+		ResidentDoctor_Name,
+		AttendingDoctor_Id,
+		AttendingDoctor_Name,
+		Director_Id,
+		Director_Name,
+		DeputyDoctor_Id,
+		DeputyDoctor_Name,
 		AdmitSource,
 		PatientCondition,
 		AdmissionType_Code,
@@ -162,14 +164,14 @@
 		DoctorGrooupId,
 		NursingGroupId,
 		FirstAdmissionIndicator,
-		SpecialDepartment_Code
+		SpecialDepartment_Code,
 		SpecialDepartment_Name,
 		Insurance_InsuranceIdentifier_Id,
 		Insurance_InsuranceInformation,
-		Insurance_Type_Name,
+		Insurance_Type,
 		Insurance_Type_Code,
-		Insurance_Property,
-		Insurance_PropertyCode,
+		Insurance_PropertyCode_Name,
+		Insurance_PropertyCode_Code,
 		EmailAddress_IdentificationOfTheMedium,
 		MailingAddress_AddressDescription,
 		MailingAddress_StateProvinceTerritory,
@@ -179,20 +181,22 @@
 		MailingAddress_StreetName,
 		MailingAddress_Number,
 		MailingAddress_PostalCode,
-		MobelPhone_IdentificationOfTheMedium,
+		MobilePhone_IdentificationOfTheMedium,
 		HomePhone_IdentificationOfTheMedium,
 		BusinessPhone_IdentificationOfTheMedium
 	</sql>
 	
 	<insert id="insertPatientInfo" parameterType="com.zju.edu.integration.clever.model.PatientInfo">
-		<selectKey resultType="long" keyProperty="guid" order="AFTER">
+		<!-- <selectKey resultType="String" keyProperty="guid" order="AFTER">
 			SELECT
 			ident_current('Person_Patient') as uid
-		</selectKey>
-		insert into Demo_Patient(
+		</selectKey> -->
+		insert into Person_Patient(
 			<include refid="patientInfoFields" />
 		)
-		values(#{patientID,jdbcType=VARCHAR},
+		values(newid(),
+<!-- 		#{guid,jdbcType=VARCHAR}, -->
+		#{patientID,jdbcType=VARCHAR},
 		#{patientName,jdbcType=VARCHAR},
 		#{patientSexCode,jdbcType=VARCHAR},
 		#{patientSexName,jdbcType=VARCHAR},
@@ -224,14 +228,15 @@
 		#{deathCity,jdbcType=VARCHAR});
 	</insert>
 	<insert id="insertPatientAdmission" parameterType="com.zju.edu.integration.clever.model.PatientAdmission">
-		<selectKey resultType="long" keyProperty="uid" order="AFTER">
+		<!-- <selectKey resultType="long" keyProperty="uid" order="AFTER">
 			SELECT
 			ident_current('Admin_PatientAdmission') as uid
-		</selectKey>
+		</selectKey> -->
 		insert into Admin_PatientAdmission(
 			<include refid="patientAdmissionFields"/>
 		)
-		values(#{patientID,jdbcType=VARCHAR},
+		values(newid(),
+		#{patientID,jdbcType=VARCHAR},
 		#{patientClassCode,jdbcType=VARCHAR},
 		#{patientClassName,jdbcType=VARCHAR},
 		#{visitID,jdbcType=VARCHAR},

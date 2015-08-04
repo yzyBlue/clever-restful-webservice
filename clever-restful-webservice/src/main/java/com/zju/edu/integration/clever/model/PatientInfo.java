@@ -1,11 +1,12 @@
 package com.zju.edu.integration.clever.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="PatientInfo")
 public class PatientInfo {
-	private long guid;//主键自增
+	private String guid;//主键自增
 	private String patientID;//病人号（*）
 	private String patientName;//病人姓名（*）
 	private String patientSexCode;//病人性别，M：男、F:女、U：未知、O：未说明(*)
@@ -38,8 +39,9 @@ public class PatientInfo {
     private String deathCity;//死亡地址-市
 	public PatientInfo() {
 		super();
+		//guid=UUID.randomUUID().toString();
 	}
-	public PatientInfo(long guid, String patientID, String patientName,
+	public PatientInfo(String guid, String patientID, String patientName,
 			String patientSexCode, String patientSexName, Date dateOfBirth,
 			String nationality, String ethnicCode, String ethnic,
 			String maritalStatusCode, String maritalStatus, String profession,
@@ -85,10 +87,10 @@ public class PatientInfo {
 		this.deathCity = deathCity;
 	}
 
-	public long getGuid() {
+	public String getGuid() {
 		return guid;
 	}
-	public void setGuid(long guid) {
+	public void setGuid(String guid) {
 		this.guid = guid;
 	}
 	public String getPatientID() {
@@ -329,7 +331,7 @@ public class PatientInfo {
 		result = prime * result + ((ethnic == null) ? 0 : ethnic.hashCode());
 		result = prime * result
 				+ ((ethnicCode == null) ? 0 : ethnicCode.hashCode());
-		result = prime * result + (int) (guid ^ (guid >>> 32));
+		result = prime * result + ((guid == null) ? 0 : guid.hashCode());
 		result = prime * result
 				+ ((healthNO == null) ? 0 : healthNO.hashCode());
 		result = prime * result
@@ -463,7 +465,10 @@ public class PatientInfo {
 				return false;
 		} else if (!ethnicCode.equals(other.ethnicCode))
 			return false;
-		if (guid != other.guid)
+		if (guid == null) {
+			if (other.guid != null)
+				return false;
+		} else if (!guid.equals(other.guid))
 			return false;
 		if (healthNO == null) {
 			if (other.healthNO != null)
@@ -553,5 +558,6 @@ public class PatientInfo {
 				.append("]");
 		return builder.toString();
 	}
+	
 
 }

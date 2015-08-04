@@ -20,10 +20,23 @@
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
-			<value>classpath:com/zju/edu/integration/clever/config/jdbc.properties</value>
+			<value>classpath:com/zju/edu/integration/clever/config/jdbc.properties
+			</value>
 		</property>
 	</bean>
 	<!--配置数据源 -->
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"> -->
+<!-- 		<property name="jdbcUrl" value="jdbc:sqlserver://localhost:1433;DatabaseName=clever-cdr" /> -->
+<!-- 		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" /> -->
+<!-- 		<property name="user" value="sa" /> -->
+<!-- 		<property name="password" value="SQLserver2012" /> -->
+<!-- 		<property name="acquireRetryAttempts" value="30" /> -->
+<!-- 		<property name="autoCommitOnClose" value="true" /> -->
+<!-- 		<property name="idleConnectionTestPeriod" value="60" /> -->
+<!-- 		<property name="initialPoolSize" value="3" /> -->
+<!-- 		<property name="maxIdleTime" value="60" /> -->
+<!-- 		<property name="maxPoolSize" value="15" /> -->
+<!-- 	</bean> -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="url" value="${jdbc.url}" />
@@ -32,19 +45,21 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<!-- mybatis文件配置，扫描所有mapper文件 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-		p:dataSource-ref="dataSource" p:configLocation="classpath:com/zju/edu/integration/clever/config/mybatis-config.xml"
-		p:mapperLocations="classpath:com/zju/edu/integration/clever/mapper/*.xml" />
-
-	<!-- configLocation为mybatis属性 mapperLocations为所有mapper -->
-
-	<!-- spring与mybatis整合配置，扫描所有dao -->
+    <!-- 使用spring的会话管理 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:com/zju/edu/integration/clever/config/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:com/zju/edu/integration/clever/mapper/*.xml" />
+    </bean>
+    
+    <!-- spring与mybatis整合配置，扫描所有dao -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
 		p:basePackage="com.zju.edu.integration.clever.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+		
+    <!-- 使用spring的事务管理 -->
+    <bean name="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
 
-	<!-- 对数据源进行事务管理 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-		p:dataSource-ref="dataSource" />
 </beans>
