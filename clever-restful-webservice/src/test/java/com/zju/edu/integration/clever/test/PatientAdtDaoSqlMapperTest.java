@@ -1,9 +1,12 @@
 package com.zju.edu.integration.clever.test;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,28 +17,24 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.zju.edu.integration.clever.dao.PatientAdtDao;
+import com.zju.edu.integration.clever.entity.SQLSessionConfig;
 import com.zju.edu.integration.clever.model.PatientAdmission;
 import com.zju.edu.integration.clever.model.PatientInfo;
 
-public class PatientAdtDaoTest {
+public class PatientAdtDaoSqlMapperTest {
 	protected final Logger logger =Logger.getLogger(this.getClass()) ;
-	private ClassPathXmlApplicationContext context;
-	@Resource (name="patientAdtDao")
-	private PatientAdtDao patientAdtDao;
-	private PlatformTransactionManager platformTransactionManager;
+	//private ClassPathXmlApplicationContext context;
 	@Before
 	public void init(){
-		context=new ClassPathXmlApplicationContext("com/zju/edu/integration/clever/config/spring-mybatis.xml");
-		patientAdtDao=(PatientAdtDao) context.getBean("patientAdtDao");
-		platformTransactionManager=(PlatformTransactionManager) context.getBean("transactionManager");
+		//context=new ClassPathXmlApplicationContext("com/zju/edu/integration/clever/config/SQLMapperConfig.xml");
 	}
 	@Test
 	public void testPatientAdtDao(){
 		logger.debug("*********  testPatientAdtDao Start ***********");
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setName("Patient-Admission-Transaction");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-		TransactionStatus status=platformTransactionManager.getTransaction(def);
+		SqlSession sqlSession=SQLSessionConfig.getSqlSessionFactory().openSession();
+		logger.debug("*********  SqlSession Open  ***********");
+		PatientAdtDao patientAdtDao=sqlSession.getMapper(PatientAdtDao.class);
+		logger.debug("*********  patientAdtDaoNew Created  ***********");
 		try{
 			PatientInfo patientInfo=new PatientInfo();
 			patientInfo.setBirthPlace("中国浙江杭州");
@@ -53,14 +52,14 @@ public class PatientAdtDaoTest {
 			patientInfo.setEthnic("汉族");
 			patientInfo.setEthnicCode("01");
 			patientInfo.setHealthNO("98786465");
-			patientInfo.setMaritalStatus("未婚");
-			patientInfo.setMaritalStatusCode("01");
+			patientInfo.setMaritalStatus("已婚");
+			patientInfo.setMaritalStatusCode("02");
 			patientInfo.setNationality("中国");
-			patientInfo.setPatientID("M0000001");
+			patientInfo.setPatientID("M0000003");
 			patientInfo.setPatientIdNO("42058231657321354");
-			patientInfo.setPatientName("袁子洋");
-			patientInfo.setPatientSexCode("01");
-			patientInfo.setPatientSexName("男");
+			patientInfo.setPatientName("陈佩佩");
+			patientInfo.setPatientSexCode("02");
+			patientInfo.setPatientSexName("女");
 			patientInfo.setProfession("学生");
 			logger.debug("*********  patientInfo Created  ***********");
 			logger.debug(patientInfo.toString());
@@ -82,7 +81,7 @@ public class PatientAdtDaoTest {
 			patientAdm.setAttendingDoctorName(str);
 			patientAdm.setBedCode(id);
 			patientAdm.setBedName(str);
-			patientAdm.setBusinessPhone("1232456789");
+			patientAdm.setBusinessPhone("15468256837");
 			patientAdm.setDeptCode(id);
 			patientAdm.setDeptName(str);
 			patientAdm.setDeputyDoctorID(id);
@@ -92,18 +91,21 @@ public class PatientAdtDaoTest {
 			patientAdm.setDoctorGroupID(id);
 			patientAdm.setPatientClassCode("I");
 			patientAdm.setPatientClassName("住院");
-			patientAdm.setPatientID("M0000001");
-			patientAdm.setVisitID("123456");
+			patientAdm.setPatientID("M0000003");
+			patientAdm.setVisitID("45354564");
 			logger.debug("*********  patientAdmission Created  ***********");
 			logger.debug(patientAdm.toString());
 			long j=patientAdtDao.insertPatientAdmission(patientAdm);
 			logger.debug("*********  patientAdmission Inserted  ***********");
-			platformTransactionManager.commit(status);
-			logger.debug("*********  platformTransactionManager commit  ***********");
+			sqlSession.commit();
+			logger.debug("*********  SqlSession Commit  ***********");
 		}catch(Exception e){
 			logger.error(e.toString());
-			platformTransactionManager.rollback(status);
-			logger.debug("*********  platformTransactionManager Rollback  ***********");
+			sqlSession.rollback();
+			logger.debug("*********  SqlSession Rollback  ***********");
+		}finally{
+			sqlSession.close();
+			logger.debug("*********  SqlSession Closed  ***********");
 		}
 		logger.debug("*********  testPatientAdtDao End ***********");
 	}

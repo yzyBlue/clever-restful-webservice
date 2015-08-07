@@ -9,7 +9,7 @@
 		<result column="DemographicDetails_Gender_Code" property="patientSexCode" jdbcType="VARCHAR" />
 		<result column="DemographicDetails_Gender_Name" property="patientSexName" jdbcType="VARCHAR" />
 		<result column="DemographicDetails_BirthData_BirthDate" property="dateOfBirth" jdbcType="TIMESTAMP" />
-		<result column="DemographicDetails_Nationality" property="nationality" jdbcType="VARCHAR" />
+		<result column="DemographicDetails_Nationlity" property="nationality" jdbcType="VARCHAR" />
 		<result column="DemographicDetails_EthnicBackground_Code" property="ethnicCode" jdbcType="VARCHAR" />
 		<result column="DemographicDetails_EthnicBackground_Name" property="ethnic" jdbcType="VARCHAR" />
 		<result column="DemographicDetails_MaritalStatus_Code" property="maritalStatusCode" jdbcType="VARCHAR" />
@@ -76,10 +76,10 @@
 		<result column="SpecialDepartment_Name" property="specialDepartment" jdbcType="VARCHAR" />
 		<result column="Insurance_InsuranceIdentifier_Id" property="insuranceID" jdbcType="VARCHAR" />
 		<result column="Insurance_InsuranceInformation" property="insuranceInformation" jdbcType="VARCHAR" />
-		<result column="Insurance_Type" property="insuranceType" jdbcType="VARCHAR" />
+		<result column="Insurance_Type_Name" property="insuranceType" jdbcType="VARCHAR" />
 		<result column="Insurance_Type_Code" property="insuranceTypeCode" jdbcType="VARCHAR" />
-		<result column="Insurance_PropertyCode_Name" property="insurancePropety" jdbcType="VARCHAR" />
-		<result column="Insurance_PropertyCode_Code" property="insurancePropetyCode" jdbcType="VARCHAR" />
+		<result column="Insurance_Property_Name" property="insurancePropety" jdbcType="VARCHAR" />
+		<result column="Insurance_Property_Code" property="insurancePropetyCode" jdbcType="VARCHAR" />
 		<result column="EmailAddress_IdentificationOfTheMedium" property="emailAdress" jdbcType="VARCHAR" />
 		<result column="MailingAddress_AddressDescription" property="mailingAdress" jdbcType="VARCHAR" />
 		<result column="MailingAddress_StateProvinceTerritory" property="maillingAdressProvince" jdbcType="VARCHAR" />
@@ -101,7 +101,7 @@
 		DemographicDetails_Gender_Code,
 		DemographicDetails_Gender_Name,
 		DemographicDetails_BirthData_BirthDate,
-		DemographicDetails_Nationality,
+		DemographicDetails_Nationlity,
 		DemographicDetails_EthnicBackground_Code,
 		DemographicDetails_EthnicBackground_Name,
 		DemographicDetails_MaritalStatus_Code,
@@ -168,10 +168,10 @@
 		SpecialDepartment_Name,
 		Insurance_InsuranceIdentifier_Id,
 		Insurance_InsuranceInformation,
-		Insurance_Type,
+		Insurance_Type_Name,
 		Insurance_Type_Code,
-		Insurance_PropertyCode_Name,
-		Insurance_PropertyCode_Code,
+		Insurance_Property_Name,
+		Insurance_Property_Code,
 		EmailAddress_IdentificationOfTheMedium,
 		MailingAddress_AddressDescription,
 		MailingAddress_StateProvinceTerritory,

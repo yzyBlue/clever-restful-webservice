@@ -15,9 +15,9 @@
 				<property name="driver"
 					value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 				<property name="url"
-					value="jdbc:sqlserver://localhost:1433;DatabaseName=clever-cdr" />
-				<property name="username" value="sa" />
-				<property name="password" value="SQLserver2012" />
+					value="jdbc:sqlserver://172.16.100.33;instanceName=CDR;databaseName=clever-cdr-develop" />
+				<property name="username" value="shine_user" />
+				<property name="password" value="@shineuser##123" />
 				<property name="poolMaximumActiveConnections" value="1000" />
 				<property name="poolMaximumIdleConnections" value="100" />
 			</dataSource>
